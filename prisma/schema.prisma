@@ -1,0 +1,53 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id          String   @id @default(cuid())
+  email       String   @unique
+  password    String
+  peopleCount Int
+  allergies   String[] // Array of preselected hardcoded allergies user chooses from
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  meals MealPlan[]
+}
+
+model MealPlan {
+  id        String   @id @default(cuid())
+  userId    String
+  days      Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  meals     Meal[]
+
+  @@index([userId])
+}
+
+model Meal {
+  id          String   @id @default(cuid())
+  mealPlanId  String
+  day         Int
+  mealType    MealType
+  name        String
+  ingredients Json
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  mealPlan MealPlan @relation(fields: [mealPlanId], references: [id], onDelete: Cascade)
+
+  @@unique([mealPlanId, day, mealType])
+}
+
+enum MealType {
+  BREAKFAST
+  LUNCH
+  SNACKS
+  DINNER
+}
