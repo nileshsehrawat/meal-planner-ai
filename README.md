@@ -4,6 +4,12 @@ A full-stack intelligent meal planning application built with Next.js that helps
 
 ---
 
+## 🚀 Live Demo
+
+👉 https://meal-planner-ai-umber.vercel.app/
+
+---
+
 ## 🧩 Problem Statement
 
 Planning daily meals is repetitive and time-consuming. Users often struggle with:
@@ -84,10 +90,23 @@ bash pnpm dev
 
 ---
 
+## 🚀 Deployment & CI/CD
+
+The application is deployed on Vercel, which provides:
+
+- Automatic deployments on every push to the main branch
+- Built-in CI/CD pipeline (no manual setup required)
+- Environment variable management
+- Optimized Next.js hosting with edge performance
+
+This ensures continuous integration and delivery with minimal configuration.
+
+---
+
 ## 🧪 Testing
 
 Basic API and flow testing implemented.  
-(You can expand with unit/integration tests.)
+Can be extended with unit, integration, and end-to-end tests for better coverage.
 
 ---
 
@@ -96,7 +115,7 @@ Basic API and flow testing implemented.
 - Password hashing using bcrypt
 - Session-based authentication
 - Protected API routes
-- Input validation
+- Input validation and sanitization
 
 ---
 
@@ -105,13 +124,13 @@ Basic API and flow testing implemented.
 - Server-side rendering (SSR)
 - Efficient database queries
 - Minimal API payloads
-- Clean component structure
+- Clean and modular component structure
 
 ---
 
 ## 🌍 Real-World Considerations
 
-- Handles API failures (AI fallback)
+- Handles API failures gracefully (AI fallback system)
 - Scalable database design
 - Secure authentication flow
 - Modular architecture for future expansion
@@ -120,7 +139,7 @@ Basic API and flow testing implemented.
 
 ## 🚀 Future Improvements
 
-- Fine-tuning AI to improve the results
+- Fine-tuning AI to improve results
 - Nutrition tracking
 - Recipe instructions
 - AI-based personalization
@@ -132,5 +151,5 @@ Basic API and flow testing implemented.
 
 Nilesh Sehrawat
 
-- GitHub: https://www.github.com/nileshsehrawat
+- GitHub: https://www.github.com/nileshsehrawat  
 - LinkedIn: https://www.linkedin.com/in/nilesh-sehrawat-a0a942322/
