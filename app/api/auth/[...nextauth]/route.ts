@@ -1,9 +1,10 @@
-import NextAuth, { type NextAuthOptions } from "next-auth";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { db } from "@/lib/db";
 import bcrypt from "bcrypt";
 
-export const authOptions: NextAuthOptions = {
+export const authOptions: any = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -26,6 +27,7 @@ export const authOptions: NextAuthOptions = {
           credentials.password,
           user.password,
         );
+
         if (!isValid) return null;
 
         return {
@@ -38,22 +40,8 @@ export const authOptions: NextAuthOptions = {
   session: {
     strategy: "jwt",
   },
-  callbacks: {
-    async jwt({ token, user }) {
-      if (user?.id) {
-        token.id = user.id;
-      }
-      return token;
-    },
-    async session({ session, token }) {
-      if (session.user && token.id) {
-        session.user.id = token.id as string;
-      }
-      return session;
-    },
-  },
 };
 
-const handler = NextAuth(authOptions);
+const handler = (NextAuth as any)(authOptions);
 
 export { handler as GET, handler as POST };

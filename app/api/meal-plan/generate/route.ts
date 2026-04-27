@@ -1,9 +1,9 @@
 import { db } from "@/lib/db";
-import { getServerSession } from "next-auth";
+import { getServerSession } from "next-auth/next";
 import { authOptions } from "../../auth/[...nextauth]/route";
 import { generateMeals } from "@/lib/meal-generator";
 import type { MealPlanDay } from "@/lib/meal-generator";
-import { generateMealsAI } from "../../../../lib/ai";
+import { generateMealsAI } from "@/lib/ai";
 
 const corsHeaders = {
   "Access-Control-Allow-Methods": "POST, OPTIONS",
@@ -18,7 +18,11 @@ export async function OPTIONS() {
 }
 
 export async function POST(req: Request) {
-  const session = await getServerSession(authOptions);
+  const session = (await getServerSession(authOptions)) as {
+    user?: {
+      id?: string;
+    };
+  } | null;
 
   if (!session?.user?.id) {
     return Response.json(
