@@ -1,5 +1,5 @@
 import { db } from "@/lib/db";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 
 export async function POST(req: Request): Promise<Response> {
   const body = (await req.json()) as { email?: string; password?: string };
@@ -41,7 +41,9 @@ export async function POST(req: Request): Promise<Response> {
       id: user.id,
       email: user.email,
     });
-  } catch {
+  } catch (err) {
+    console.error("REGISTER ERROR:", err);
+
     return Response.json(
       { error: "Could not create account right now." },
       { status: 500 },
