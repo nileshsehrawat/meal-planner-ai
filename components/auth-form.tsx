@@ -32,7 +32,12 @@ export default function AuthForm({ mode }: { mode: Mode }) {
           setError(data.error || "Registration failed");
           return;
         }
+
+        // Keep signup and login explicit: after account creation, go to login.
+        router.push("/login");
+        return;
       }
+
       const result = await signIn("credentials", {
         email,
         password,

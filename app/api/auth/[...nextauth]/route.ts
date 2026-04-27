@@ -40,6 +40,23 @@ export const authOptions: any = {
   session: {
     strategy: "jwt",
   },
+  pages: {
+    signIn: "/login",
+  },
+  callbacks: {
+    async jwt({ token, user }: any) {
+      if (user?.id) {
+        token.id = user.id;
+      }
+      return token;
+    },
+    async session({ session, token }: any) {
+      if (session?.user && token?.id) {
+        session.user.id = token.id;
+      }
+      return session;
+    },
+  },
 };
 
 const handler = (NextAuth as any)(authOptions);

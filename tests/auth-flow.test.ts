@@ -13,7 +13,7 @@ vi.mock("@/lib/db", () => ({
   },
 }));
 
-vi.mock("bcrypt", () => ({
+vi.mock("bcryptjs", () => ({
   default: {
     compare: mocks.compare,
   },
