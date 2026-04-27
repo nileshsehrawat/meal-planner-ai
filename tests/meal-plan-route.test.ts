@@ -9,8 +9,7 @@ const mocks = vi.hoisted(() => ({
   generateMeals: vi.fn(),
 }));
 
-vi.mock("next-auth", () => ({
-  default: vi.fn(() => ({ GET: vi.fn(), POST: vi.fn() })),
+vi.mock("next-auth/next", () => ({
   getServerSession: mocks.getServerSession,
 }));
 
